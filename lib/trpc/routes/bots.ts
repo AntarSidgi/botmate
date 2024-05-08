@@ -57,3 +57,43 @@ export const updateBotToken = procedure
       }
     }
   });
+
+export const setWebhook = procedure
+  .input(
+    z.object({
+      botId: z.string(),
+      url: z.string(),
+    }),
+  )
+  .mutation(async ({ input }) => {
+    try {
+      return await services.bots.enableWebhook(
+        input.botId,
+        input.url,
+      );
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: err.message,
+        });
+      }
+    }
+  });
+
+export const disableWebhook = procedure
+  .input(z.string())
+  .mutation(async ({ input }) => {
+    try {
+      return await services.bots.disableWebhook(
+        input,
+      );
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: err.message,
+        });
+      }
+    }
+  });

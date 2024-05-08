@@ -107,12 +107,60 @@ async function updateToken(
   }
 }
 
+async function enableWebhook(
+  botId: string,
+  url: string,
+) {
+  const bot = await get(botId);
+
+  if (!bot) {
+    throw new Error('Bot not found');
+  }
+
+  try {
+    const i = new Bot(bot.token);
+    await i.api.setWebhook(url);
+
+    return update(botId, {
+      enableWebhook: true,
+      webhookUrl: url,
+    });
+  } catch (err) {
+    if (err instanceof GrammyError) {
+      throw new Error(err.description);
+    }
+  }
+}
+
+async function disableWebhook(botId: string) {
+  const bot = await get(botId);
+
+  if (!bot) {
+    throw new Error('Bot not found');
+  }
+
+  try {
+    const i = new Bot(bot.token);
+    await i.api.deleteWebhook();
+
+    return update(botId, {
+      enableWebhook: false,
+    });
+  } catch (err) {
+    if (err instanceof GrammyError) {
+      throw new Error(err.description);
+    }
+  }
+}
+
 const bots = {
   all,
   get,
   create,
   update,
   updateToken,
+  enableWebhook,
+  disableWebhook,
 };
 
 export default bots;

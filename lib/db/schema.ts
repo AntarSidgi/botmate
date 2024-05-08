@@ -1,6 +1,5 @@
 import { sql } from 'drizzle-orm';
 import {
-  blob,
   integer,
   sqliteTable,
   text,
@@ -13,6 +12,12 @@ const bots = sqliteTable('bots', {
   username: text('username').notNull(),
   token: text('token').notNull(),
   status: integer('status').notNull(),
+
+  enableWebhook: integer('enable_webhook', {
+    mode: 'boolean',
+  }).default(false),
+  webhookUrl: text('webhook_url'),
+
   createdAt: text('created_at').default(
     sql`CURRENT_TIMESTAMP`,
   ),

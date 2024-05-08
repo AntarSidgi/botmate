@@ -28,6 +28,9 @@ const nextConfig = {
     version: packageJSON.version,
     gitSHA: process.env.GIT_SHA || getSha(),
   },
+  experimental: {
+    instrumentationHook: true,
+  },
 };
 
 export default withNextIntl(nextConfig);
