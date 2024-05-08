@@ -4,6 +4,7 @@ import {
   useMessages,
 } from 'next-intl';
 import { Poppins } from 'next/font/google';
+import Script from 'next/script';
 
 import GlobalProvider from '#/lib/providers/global';
 
@@ -30,6 +31,11 @@ export default function RootLayout({
   const messages = useMessages();
   return (
     <html lang={locale}>
+      <Script
+        defer
+        data-domain="botmate.dev"
+        src="https://analytics.monawwar.io/js/script.local.js"
+      />
       <body className={`${poppins.className}`}>
         <NextIntlClientProvider
           locale={locale}
