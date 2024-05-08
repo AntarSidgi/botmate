@@ -1,12 +1,10 @@
 import { getRequestConfig } from 'next-intl/server';
 import { notFound } from 'next/navigation';
 
-// Can be imported from a shared config
-const locales = ['en', 'id'];
+import { locales } from './config';
 
 export default getRequestConfig(
   async ({ locale }) => {
-    // Validate that the incoming `locale` parameter is valid
     if (!locales.includes(locale as any))
       notFound();
 
@@ -17,3 +15,8 @@ export default getRequestConfig(
     };
   },
 );
+
+export const localName: Record<string, string> = {
+  en: 'English',
+  id: 'Indonesia',
+};

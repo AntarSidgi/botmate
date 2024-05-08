@@ -57,8 +57,8 @@ function Layout({
   );
 
   return (
-    <div className="flex flex-1">
-      <div className="w-72 border-r bg-background">
+    <div className="flex flex-1 overflow-hidden">
+      <div className="w-72 overflow-auto border-r bg-background">
         <Header title={t('Common.Settings')} />
 
         {options.map((option) => {
@@ -103,7 +103,7 @@ function Layout({
           );
         })}
       </div>
-      <div className="h-full flex-1">
+      <div className="h-full flex-1 overflow-auto">
         {children}
       </div>
     </div>

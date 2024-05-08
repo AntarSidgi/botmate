@@ -1,9 +1,69 @@
 {
+  "Common": {
+    "Submit": "Kirim",
+    "No bots": "Tidak ada bot",
+    "All bots": "Semua bot",
+    "Settings": "Pengaturan",
+    "Coming soon": "Segera hadir"
+  },
   "Sidebar": {
     "Dashboard": "Dasbor",
     "Commands": "Perintah",
     "Debug": "Debug",
     "Marketplace": "Pasar",
     "Settings": "Pengaturan"
+  },
+  "Select a bot": {
+    "Title": "Pilih bot",
+    "Description": "Silakan pilih bot yang akan dikelola"
+  },
+  "Create Bot": {
+    "Title": "Buat Bot",
+    "Description": "Silakan masukkan token untuk membuat bot baru",
+    "Placeholder": "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
+    "Error": {
+      "Empty": "Silakan masukkan token bot",
+      "Invalid": "Token bot tidak valid",
+      "Exists": "Bot sudah ada"
+    }
+  },
+  "Debug": {
+    "Title": "Debug",
+    "Live messages": "Pesan langsung",
+    "No message selected": "Tidak ada pesan yang dipilih"
+  },
+  "Message": {
+    "unknown": "Tidak diketahui",
+    "text": "Teks",
+    "photo": "Foto",
+    "audio": "Audio",
+    "document": "Dokumen",
+    "sticker": "Stiker",
+    "video": "Video",
+    "voice": "Suara",
+    "caption": "Keterangan"
+  },
+  "Settings": {
+    "General": {
+      "Title": "Umum",
+      "Description": "Tampilan, bahasa, dll"
+    },
+    "Bot": {
+      "Title": "Bot",
+      "Description": "Webhook, token, dan cadangan"
+    },
+    "Command": {
+      "Title": "Perintah",
+      "Description": "Admin, default, global, dll"
+    },
+    "Appearance": {
+      "Title": "Tampilan",
+      "Description": "Sesuaikan tampilan aplikasi"
+    },
+    "Language": {
+      "Title": "Bahasa",
+      "Description": "Ubah bahasa situs web",
+      "Select": "Pilih bahasa"
+    }
   }
 }

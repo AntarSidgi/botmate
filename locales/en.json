@@ -3,7 +3,8 @@
     "Submit": "Submit",
     "No bots": "No bots",
     "All bots": "All bots",
-    "Settings": "Settings"
+    "Settings": "Settings",
+    "Coming soon": "Coming soon"
   },
   "Sidebar": {
     "Dashboard": "Dashboard",
@@ -54,6 +55,15 @@
     "Command": {
       "Title": "Command",
       "Description": "Admins, default, global etc"
+    },
+    "Appearance": {
+      "Title": "Appearance",
+      "Description": "Customize the appearance of the application"
+    },
+    "Language": {
+      "Title": "Language",
+      "Description": "Change language of the website",
+      "Select": "Select language"
     }
   }
 }
