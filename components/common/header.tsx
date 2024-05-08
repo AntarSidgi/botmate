@@ -7,7 +7,7 @@ function Header({
 }) {
   return (
     <div className="sticky top-0 flex min-h-16 items-center gap-2 border-b bg-white px-2 py-2">
-      <h1 className="text-lg font-bold">
+      <h1 className="text-lg font-semibold">
         {title}
       </h1>
       <div className="flex-1" />
