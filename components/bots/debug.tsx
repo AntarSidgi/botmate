@@ -19,7 +19,7 @@ function DebugBot() {
     useDebug();
 
   useEffect(() => {
-    instance?.on(':text', (ctx) => {
+    instance?.on('message', (ctx) => {
       insertMessage(ctx.message as Message);
     });
   }, [insertMessage, instance]);
