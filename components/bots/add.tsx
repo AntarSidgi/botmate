@@ -53,7 +53,7 @@ function CreateBotCard() {
     <>
       <Card className="w-[25rem]">
         <CardHeader>
-          <CardTitle>
+          <CardTitle className="text-md">
             {t('Create Bot.Title')}
           </CardTitle>
           <CardDescription>

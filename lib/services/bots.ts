@@ -1,8 +1,12 @@
-import { Bot } from 'grammy';
+import { eq } from 'drizzle-orm';
+import { Bot, GrammyError } from 'grammy';
 
 import { LibsqlError } from '@libsql/client';
 
-import { bots as botSchema } from '#/lib/db/schema';
+import {
+  Bot as BotSchema,
+  bots as botSchema,
+} from '#/lib/db/schema';
 
 import db from '../db';
 
@@ -66,10 +70,49 @@ function get(id: string) {
   });
 }
 
+function update(
+  id: string,
+  data: Partial<BotSchema>,
+) {
+  return db
+    .update(botSchema)
+    .set(data)
+    .where(eq(botSchema.id, id));
+}
+
+async function updateToken(
+  id: string,
+  newToken: string,
+) {
+  const bot = await get(id);
+
+  if (!bot) {
+    throw new Error('Bot not found');
+  }
+
+  try {
+    const i = new Bot(newToken);
+    const me = await i.api.getMe();
+
+    if (bot.id !== me.id.toString()) {
+      throw new Error(
+        'You are trying to update the token with a different bot',
+      );
+    }
+    return update(id, { token: newToken });
+  } catch (e) {
+    if (e instanceof GrammyError) {
+      throw new Error(e.message);
+    }
+  }
+}
+
 const bots = {
   all,
   get,
   create,
+  update,
+  updateToken,
 };
 
 export default bots;

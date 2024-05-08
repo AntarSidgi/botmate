@@ -34,3 +34,26 @@ export const addBot = procedure
       }
     }
   });
+
+export const updateBotToken = procedure
+  .input(
+    z.object({
+      id: z.string(),
+      token: z.string(),
+    }),
+  )
+  .mutation(async ({ input }) => {
+    try {
+      return await services.bots.updateToken(
+        input.id,
+        input.token,
+      );
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: err.message,
+        });
+      }
+    }
+  });
