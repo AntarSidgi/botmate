@@ -22,5 +22,5 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: monawwar/botmate:${{ github.ref_name }}
+          tags: monawwar/botmate:${{ github.ref_name }}, monawwar/botmate:latest
           platforms: linux/amd64,linux/arm64
