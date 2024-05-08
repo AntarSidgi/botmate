@@ -1,4 +1,11 @@
 import {
+  CheckCircle2Icon,
+  CheckIcon,
+  MessageSquareWarningIcon,
+  TriangleAlertIcon,
+} from 'lucide-react';
+
+import {
   Card,
   CardDescription,
   CardHeader,
@@ -7,7 +14,17 @@ import {
 
 import Header from '#/components/common/header';
 
-function Page() {
+async function getLatestVersion() {
+  const res = await fetch(
+    'https://api.github.com/repos/botmate/botmate/tags',
+  ).then((res) => res.json());
+  return (res[0]?.name as string) ?? '';
+}
+
+async function Page() {
+  const latestVersion = await getLatestVersion();
+  let isLatest =
+    process.env.version === latestVersion;
   return (
     <>
       <Header title="About" />
@@ -27,13 +44,20 @@ function Page() {
         </Card>
 
         <div className="grid grid-cols-2 gap-4">
-          <Card>
+          <Card className="relative">
             <CardHeader>
-              <CardTitle className="text-md">
+              <CardTitle className="text-md flex flex-row items-center justify-between">
                 v{process.env.version}
+                {isLatest ? (
+                  <CheckCircle2Icon className="text-green-500" />
+                ) : (
+                  <TriangleAlertIcon className="text-yellow-500" />
+                )}
               </CardTitle>
               <CardDescription>
-                version
+                {isLatest
+                  ? 'latest version'
+                  : `v${latestVersion} is available`}
               </CardDescription>
             </CardHeader>
           </Card>
