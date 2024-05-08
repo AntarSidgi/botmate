@@ -3,6 +3,7 @@
 import {
   BotIcon,
   BrushIcon,
+  InfoIcon,
   SlashSquareIcon,
 } from 'lucide-react';
 
@@ -51,6 +52,14 @@ function Layout({
           'Settings.Command.Description',
         ),
         href: '/bots/[botId]/settings/command',
+      },
+      {
+        icon: InfoIcon,
+        title: t('Settings.About.Title'),
+        description: t(
+          'Settings.About.Description',
+        ),
+        href: '/bots/[botId]/settings/about',
       },
     ],
     [t],

@@ -57,6 +57,11 @@
       "Title": "Command",
       "Description": "Admins, default, global etc"
     },
+    "About": {
+      "Title": "About",
+      "Description": "About the application"
+    },
+
     "Appearance": {
       "Title": "Appearance",
       "Description": "Customize the appearance of the application"
