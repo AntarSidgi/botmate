@@ -71,6 +71,7 @@ function Sidebar() {
         title: t('Sidebar.Settings'),
         href: '/bots/[botId]/settings',
         icon: SettingsIcon,
+        nested: true,
       },
     ],
     [t],
@@ -80,13 +81,13 @@ function Sidebar() {
     <div
       className={`relative flex h-full w-60 flex-col gap-4 border-r`}
     >
-      <div className="flex flex-col gap-4 border-b bg-white px-2 py-4">
+      <div className="flex flex-col gap-4 border-b bg-background px-2 py-4">
         <Image
           alt="logo"
           src={'/logo.png'}
           width={50}
           height={50}
-          className="rounded-xl"
+          className="rounded-xl shadow-md"
         />
         <Select
           onValueChange={(href) => {
@@ -144,7 +145,12 @@ function Sidebar() {
               return params[key] as string;
             },
           );
-          const isActive = pathname === parsed;
+          let isActive = pathname === parsed;
+
+          if (option.nested) {
+            isActive =
+              pathname.startsWith(parsed);
+          }
 
           return (
             <motion.div key={option.title}>

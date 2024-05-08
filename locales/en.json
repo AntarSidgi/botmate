@@ -2,7 +2,8 @@
   "Common": {
     "Submit": "Submit",
     "No bots": "No bots",
-    "All bots": "All bots"
+    "All bots": "All bots",
+    "Settings": "Settings"
   },
   "Sidebar": {
     "Dashboard": "Dashboard",
@@ -40,5 +41,19 @@
     "video": "Video",
     "voice": "Voice",
     "caption": "Caption"
+  },
+  "Settings": {
+    "General": {
+      "Title": "General",
+      "Description": "Appearance, language, etc"
+    },
+    "Bot": {
+      "Title": "Bot",
+      "Description": "Webhook, token and backup"
+    },
+    "Command": {
+      "Title": "Command",
+      "Description": "Admins, default, global etc"
+    }
   }
 }

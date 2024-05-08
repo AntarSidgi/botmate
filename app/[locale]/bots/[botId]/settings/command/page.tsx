@@ -3,7 +3,7 @@ import Header from '#/components/common/header';
 function Page() {
   return (
     <>
-      <Header title="General" />
+      <Header title="Command" />
     </>
   );
 }
