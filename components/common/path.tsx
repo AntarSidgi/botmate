@@ -33,7 +33,6 @@ function Path() {
             const url = path
               .slice(0, i + 1)
               .join('/');
-            console.log('url', url);
             return (
               <Fragment key={i}>
                 <BreadcrumbSeparator />

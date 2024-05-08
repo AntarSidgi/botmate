@@ -81,19 +81,18 @@ const Button = React.forwardRef<
         ref={ref}
         {...props}
       >
-        {isLoading && (
+        {isLoading ? (
           <Loader2
-            className="mr-2 animate-spin"
+            className={`${children ? 'mr-2' : ''} animate-spin`}
             size={20}
           />
-        )}
-        {icon && (
+        ) : icon ? (
           <span
-            className={children ? 'mr-2' : ''}
+            className={`${children ? 'mr-2' : ''}`}
           >
             {icon}
           </span>
-        )}
+        ) : null}
         {children}
       </Comp>
     );

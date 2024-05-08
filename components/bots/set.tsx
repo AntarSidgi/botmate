@@ -23,14 +23,20 @@ function SetBots({
     setCurrentBot(currentBot);
     setLoading(false);
   }, [bots, currentBot, setBots, setCurrentBot]);
-  if (loading) {
-    return (
-      <div className="flex h-screen items-center justify-center">
-        <Spinner />
-      </div>
-    );
-  }
-  return <>{children}</>;
+
+  return (
+    <>
+      {loading && (
+        <div className="fixed inset-0 z-40 flex min-h-full items-center justify-center overflow-y-auto overflow-x-hidden transition">
+          <div className="fixed inset-0 z-30 h-full w-full backdrop-blur-[10px]" />
+          <div className="z-40">
+            <Spinner />
+          </div>
+        </div>
+      )}
+      {children}
+    </>
+  );
 }
 
 export default SetBots;

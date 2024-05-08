@@ -83,7 +83,7 @@ function Sidebar() {
       <div className="flex flex-col gap-4 border-b bg-white px-2 py-4">
         <Image
           alt="logo"
-          src={activeBot?.picture ?? ''}
+          src={'/logo.png'}
           width={50}
           height={50}
           className="rounded-xl"
