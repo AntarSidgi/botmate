@@ -1,3 +1,4 @@
+import { getTranslations } from 'next-intl/server';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -16,13 +17,17 @@ import services from '#/lib/services';
 async function Page() {
   const bots = await services.bots.all();
 
+  const t = await getTranslations();
+
   return (
     <div className="flex h-screen items-center justify-center bg-muted">
       <Card className="w-[25rem]">
         <CardHeader>
-          <CardTitle>Select a bots</CardTitle>
+          <CardTitle>
+            {t('Select a bot.Title')}
+          </CardTitle>
           <CardDescription>
-            Select a bot to continue
+            {t('Select a bot.Description')}
           </CardDescription>
         </CardHeader>
         <CardContent className="flex flex-col gap-2">

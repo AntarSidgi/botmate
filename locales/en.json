@@ -10,6 +10,10 @@
     "Marketplace": "Marketplace",
     "Settings": "Settings"
   },
+  "Select a bot": {
+    "Title": "Select a bot",
+    "Description": "Please select a bot to manage"
+  },
   "Create Bot": {
     "Title": "Create Bot",
     "Description": "Please enter token to create a new bot",
