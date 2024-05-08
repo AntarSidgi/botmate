@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@libsql/linux-x64-musl': 0.2.0
+
 dependencies:
   '@libsql/client':
     specifier: ^0.6.0
@@ -1148,8 +1151,8 @@ packages:
     dev: false
     optional: true
 
-  /@libsql/linux-x64-musl@0.3.18:
-    resolution: {integrity: sha512-5SXwTlaLCUPzxYyq+P0c7Ko7tcEjpd1X6RZKe1DuRFmJPg6f7j2+LrPEhMSIbqKcrl5ACUUAyoKmGZqNYwz23w==}
+  /@libsql/linux-x64-musl@0.2.0:
+    resolution: {integrity: sha512-5Xn0c5A6vKf9D1ASpgk7mef//FuY7t5Lktj/eiU4n3ryxG+6WTpqstTittJUgepVjcleLPYxIhQAYeYwTYH1IQ==}
     cpu: [x64]
     os: [linux]
     requiresBuild: true
@@ -5212,7 +5215,7 @@ packages:
       '@libsql/linux-arm64-gnu': 0.3.18
       '@libsql/linux-arm64-musl': 0.3.18
       '@libsql/linux-x64-gnu': 0.3.18
-      '@libsql/linux-x64-musl': 0.3.18
+      '@libsql/linux-x64-musl': 0.2.0
       '@libsql/win32-x64-msvc': 0.3.18
     dev: false
 
