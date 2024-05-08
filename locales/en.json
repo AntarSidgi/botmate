@@ -29,5 +29,16 @@
     "Title": "Debug",
     "Live messages": "Live messages",
     "No message selected": "No message selected"
+  },
+  "Message": {
+    "unknown": "Unknown",
+    "text": "Text",
+    "photo": "Photo",
+    "audio": "Audio",
+    "document": "Document",
+    "sticker": "Sticker",
+    "video": "Video",
+    "voice": "Voice",
+    "caption": "Caption"
   }
 }
