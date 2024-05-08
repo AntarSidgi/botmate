@@ -11,18 +11,22 @@ const packageJSON = JSON.parse(
 
 const withNextIntl = createNextIntlPlugin();
 
-const revision = execSync(
-  'git rev-parse --short HEAD',
-)
-  .toString()
-  .trim();
+function getSha() {
+  try {
+    return execSync('git rev-parse HEAD')
+      .toString()
+      .trim();
+  } catch (error) {
+    return 'unknown';
+  }
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
   env: {
     version: packageJSON.version,
-    gitLastCommit: revision,
+    gitSHA: process.env.GIT_SHA || getSha(),
   },
 };
 

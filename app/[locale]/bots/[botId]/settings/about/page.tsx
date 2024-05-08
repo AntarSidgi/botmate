@@ -40,7 +40,7 @@ function Page() {
           <Card>
             <CardHeader>
               <CardTitle className="text-md">
-                {process.env.gitLastCommit}
+                {process.env.gitSHA?.slice(0, 7)}
               </CardTitle>
               <CardDescription>
                 git commit
