@@ -88,13 +88,11 @@ function DebugBot() {
       <div className="flex h-full w-full overflow-hidden">
         <div className="h-full w-72 border-r bg-background">
           <div className="flex h-full flex-col">
-            <div className="flex h-16 items-center justify-between border-b p-4">
-              <h5 className="text-sm uppercase text-muted-foreground">
-                {t('Debug.Live messages')}
-              </h5>
-              <DebugActions />
-            </div>
-
+            {messages.length == 0 && (
+              <p className="py-4 text-center text-muted-foreground">
+                {t('Debug.No messages')}
+              </p>
+            )}
             <div className="h-full overflow-y-auto">
               {messages.map((message, index) => {
                 const parsedMessage =
@@ -105,7 +103,7 @@ function DebugBot() {
                 return (
                   <div
                     key={index}
-                    className={`border-b p-4 ${
+                    className={`h-20 border-b p-4 ${
                       isSelected
                         ? 'bg-primary-foreground'
                         : ''

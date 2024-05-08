@@ -30,7 +30,8 @@
   "Debug": {
     "Title": "Debug",
     "Live messages": "Live messages",
-    "No message selected": "No message selected"
+    "No message selected": "No message selected",
+    "No messages": "No messages"
   },
   "Message": {
     "unknown": "Unknown",
