@@ -70,7 +70,7 @@ async function Page() {
                 {process.env.gitSHA?.slice(0, 7)}
               </CardTitle>
               <CardDescription>
-                git commit
+                commit hash
               </CardDescription>
             </CardHeader>
           </Card>
