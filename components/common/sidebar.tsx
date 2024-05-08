@@ -101,12 +101,12 @@ function Sidebar() {
           <SelectContent>
             {bots.length === 1 ? (
               <p className="p-2">
-                {t('Common.No Bots')}
+                {t('Common.No bots')}
               </p>
             ) : (
               <SelectGroup>
                 <SelectLabel>
-                  Select bot
+                  {t('Common.All bots')}
                 </SelectLabel>
                 {bots
                   .filter(

@@ -5,11 +5,14 @@ import { Message } from 'grammy/types';
 import { useEffect, useState } from 'react';
 import JSONView from 'react-json-view';
 
+import { useTranslations } from 'next-intl';
+
 import { useDebug } from '#/lib/debug';
 
 import DebugActions from '../actions/debug';
 
 function DebugBot() {
+  const t = useTranslations();
   const [selectedMessage, setSelectedMessage] =
     useState<Message | null>(null);
   const { instance, messages, insertMessage } =
@@ -28,7 +31,7 @@ function DebugBot() {
           <div className="h-full">
             <div className="flex h-16 items-center justify-between border-b p-4">
               <h5 className="text-sm uppercase text-muted-foreground">
-                Live Messages
+                {t('Debug.Live messages')}
               </h5>
               <DebugActions />
             </div>
@@ -54,7 +57,7 @@ function DebugBot() {
           </div>
         ) : (
           <div className="flex flex-1 items-center justify-center">
-            No message selected
+            {t('Debug.No message selected')}
           </div>
         )}
       </div>

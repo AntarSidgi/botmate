@@ -1,7 +1,8 @@
 {
   "Common": {
     "Submit": "Submit",
-    "No Bots": "No bots"
+    "No bots": "No bots",
+    "All bots": "All bots"
   },
   "Sidebar": {
     "Dashboard": "Dashboard",
@@ -23,5 +24,10 @@
       "Invalid": "Invalid bot token",
       "Exists": "Bot already exists"
     }
+  },
+  "Debug": {
+    "Title": "Debug",
+    "Live messages": "Live messages",
+    "No message selected": "No message selected"
   }
 }
