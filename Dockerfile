@@ -14,6 +14,7 @@ RUN pnpm install --frozen-lockfile
 FROM dev-deps AS build
 COPY . .
 ENV DATABASE_URL=file:./data/db.sqlite
+RUN mkdir -p data
 RUN pnpm drizzle-kit push:sqlite
 RUN pnpm run build
 
