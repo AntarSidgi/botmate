@@ -24,8 +24,10 @@ COPY --from=build /app/package.json package.json
 COPY --from=prod-deps /app/node_modules node_modules
 COPY --from=build /app/database.sqlite database.sqlite
 
+ARG GIT_SHA
 ENV NODE_ENV=production
 ENV DATABASE_URL=file:./database.sqlite
+ENV GIT_SHA=$GIT_SHA
 EXPOSE 3000
 
 CMD ["npm", "start"]
