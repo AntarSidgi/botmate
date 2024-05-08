@@ -17,6 +17,9 @@ import Header from '#/components/common/header';
 async function getLatestVersion() {
   const res = await fetch(
     'https://api.github.com/repos/botmate/botmate/tags',
+    {
+      cache: 'no-cache',
+    },
   ).then((res) => res.json());
   return (res[0]?.name as string) ?? '';
 }
