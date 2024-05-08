@@ -95,7 +95,7 @@ function DebugBot() {
               <DebugActions />
             </div>
 
-            <div className="h-full overflow-y-scroll">
+            <div className="h-full overflow-y-auto">
               {messages.map((message, index) => {
                 const parsedMessage =
                   parseMessageView(message);

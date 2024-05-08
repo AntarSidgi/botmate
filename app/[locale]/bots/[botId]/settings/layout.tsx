@@ -77,7 +77,7 @@ function Layout({
               className="cursor-default"
             >
               <div
-                className={`flex items-center gap-2 border-b p-4 ${
+                className={`flex h-20 items-center gap-2 border-b p-4 ${
                   isActive
                     ? 'bg-primary-foreground'
                     : 'hover:bg-primary-foreground'

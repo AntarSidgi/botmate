@@ -81,7 +81,7 @@ function Sidebar() {
     <div
       className={`relative flex h-full w-60 flex-col gap-4 border-r`}
     >
-      <div className="flex flex-col gap-4 border-b bg-background px-2 py-4">
+      <div className="flex h-36 flex-col justify-center gap-4 border-b bg-background px-2">
         <Image
           alt="logo"
           src={'/logo.png'}
