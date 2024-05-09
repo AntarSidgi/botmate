@@ -18,6 +18,14 @@ export async function POST(req: Request) {
 
   const bot = globalThis.instances?.get(botId);
 
+  const debugData = debug
+    ? {
+        dirCWD: readdirSync(process.cwd()),
+        dir: readdirSync(__dirname),
+        instanceCount: globalThis.instances?.size,
+      }
+    : null;
+
   try {
     if (bot) {
       const body = await req.json();
@@ -26,18 +34,11 @@ export async function POST(req: Request) {
   } catch (e) {
     return Response.json({
       ok: false,
-      debug: debug ? e : null,
+      debug: debugData,
     });
   }
   return Response.json({
     ok: true,
-    debug: debug
-      ? {
-          dirCWD: readdirSync(process.cwd()),
-          dir: readdirSync(__dirname),
-          instanceCount:
-            globalThis.instances?.size,
-        }
-      : null,
+    debug: debugData,
   });
 }
