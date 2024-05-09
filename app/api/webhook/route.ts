@@ -1,3 +1,4 @@
+import { readdirSync } from 'fs';
 import { Bot } from 'grammy';
 
 declare module globalThis {
@@ -6,6 +7,7 @@ declare module globalThis {
 export async function POST(req: Request) {
   const { searchParams } = new URL(req.url);
   const botId = searchParams.get('botId');
+  const debug = searchParams.get('debug');
 
   if (!botId) {
     return Response.json({
@@ -16,10 +18,26 @@ export async function POST(req: Request) {
 
   const bot = globalThis.instances?.get(botId);
 
-  if (bot) {
-    const body = await req.json();
-    await bot.handleUpdate(body);
+  try {
+    if (bot) {
+      const body = await req.json();
+      await bot.handleUpdate(body);
+    }
+  } catch (e) {
+    return Response.json({
+      ok: false,
+      debug: debug ? e : null,
+    });
   }
-
-  return Response.json({ ok: true });
+  return Response.json({
+    ok: true,
+    debug: debug
+      ? {
+          dirCWD: readdirSync(process.cwd()),
+          dir: readdirSync(__dirname),
+          instanceCount:
+            globalThis.instances?.size,
+        }
+      : null,
+  });
 }
