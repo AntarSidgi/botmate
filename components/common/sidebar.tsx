@@ -11,7 +11,11 @@ import {
 } from 'lucide-react';
 import { toast } from 'sonner';
 
-import { useMemo, useState } from 'react';
+import {
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
@@ -57,13 +61,17 @@ function Sidebar() {
     },
   });
 
-  const [status, setStatus] = useState(
-    currentBot?.status,
-  );
+  const [status, setStatus] = useState(0);
 
   const activeBot = bots.find(
     (bot) => bot.id === params.botId,
   );
+
+  useEffect(() => {
+    if (currentBot) {
+      setStatus(currentBot.status);
+    }
+  }, [currentBot]);
 
   const options = useMemo(
     () => [
