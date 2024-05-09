@@ -127,7 +127,9 @@ async function enableWebhook(
 
   try {
     const i = new Bot(bot.token);
-    await i.api.setWebhook(url);
+    await i.api.setWebhook(
+      `${url}?botId=${botId}`,
+    );
 
     return update(botId, {
       enableWebhook: true,
@@ -186,9 +188,11 @@ async function launchBots(ids?: string[]) {
       bot.use(composer);
     }
 
-    if (!data.enableWebhook) {
-      bot.start();
-    }
+    if (data.enableWebhook) {
+      await bot.api.setWebhook(
+        `${data.webhookUrl}?botId=${data.id}`,
+      );
+    } else bot.start();
 
     instances.set(data.id, bot);
     await update(data.id, { status: 1 });
@@ -201,15 +205,24 @@ async function stop(id: string) {
   const bot = globalThis.instances?.get(id);
   if (bot) {
     await bot.stop();
+    await bot.api.deleteWebhook();
     await update(id, { status: 0 });
     globalThis.instances.delete(id);
   }
 }
 
 async function start(id: string) {
+  const data = await get(id);
+  if (!data) {
+    throw new Error('Bot not found');
+  }
   const bot = globalThis.instances?.get(id);
   if (bot) {
-    bot.start();
+    if (data.enableWebhook) {
+      await bot.api.setWebhook(
+        `${data.webhookUrl}?botId=${id}`,
+      );
+    } else bot.start();
     await update(id, { status: 1 });
   } else {
     return launchBots([id]);

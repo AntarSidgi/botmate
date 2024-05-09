@@ -6,7 +6,12 @@ export default {
   schema: './lib/db/schema.ts',
   out: './migrations',
   driver: 'turso',
-  dbCredentials: {
-    url: env.DATABASE_URL,
-  },
+  dbCredentials: env.DATABASE_TOKEN
+    ? {
+        url: env.DATABASE_URL,
+        authToken: env.DATABASE_TOKEN,
+      }
+    : {
+        url: env.DATABASE_URL,
+      },
 } satisfies Config;
