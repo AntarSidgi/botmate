@@ -5,6 +5,8 @@ import {
   StopCircleIcon,
 } from 'lucide-react';
 
+import { useTranslations } from 'next-intl';
+
 import {
   Tooltip,
   TooltipContent,
@@ -24,6 +26,7 @@ function DebugActions() {
     createInstance,
     deleteInstance,
   } = useDebug();
+  const t = useTranslations();
 
   function handleStart() {
     if (!currentBot) return;
@@ -36,28 +39,37 @@ function DebugActions() {
 
   return (
     <div>
-      <TooltipProvider delayDuration={100}>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              size="sm"
-              icon={<PlayIcon size={20} />}
-              disabled={
-                status === 'online' ||
-                status === 'starting'
-              }
-              isLoading={status === 'starting'}
-              onClick={handleStart}
-            />
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>Start Debugging</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <Button
+        variant="ghost"
+        size="sm"
+        icon={
+          status === 'online' ? (
+            <StopCircleIcon size={20} />
+          ) : (
+            <PlayIcon size={20} />
+          )
+        }
+        disabled={
+          status === 'starting' ||
+          status === 'stopping'
+        }
+        isLoading={
+          status === 'starting' ||
+          status === 'stopping'
+        }
+        onClick={
+          status === 'online'
+            ? handleStop
+            : handleStart
+        }
+        className="capitalize"
+      >
+        {status === 'online'
+          ? t('Common.Stop debugging')
+          : t('Common.Start debugging')}
+      </Button>
 
-      <TooltipProvider>
+      {/* <TooltipProvider>
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
@@ -76,7 +88,7 @@ function DebugActions() {
             <p>Stop Debugging</p>
           </TooltipContent>
         </Tooltip>
-      </TooltipProvider>
+      </TooltipProvider> */}
     </div>
   );
 }

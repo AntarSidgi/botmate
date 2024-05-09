@@ -204,8 +204,9 @@ function Sidebar() {
             {t('Common.Restart')}
           </Button>
         </div>
+
         <div className="space-y-1 px-2">
-          {options.map((option) => {
+          {options.map((option, index) => {
             const parsed = option.href.replace(
               /\[([^\]]+)\]/g,
               (_, key) => {
@@ -220,7 +221,14 @@ function Sidebar() {
             }
 
             return (
-              <motion.div key={option.title}>
+              <motion.div
+                key={option.title}
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  delay: index * 0.05,
+                }}
+              >
                 <Link
                   href={parsed}
                   className={`flex cursor-default items-center gap-2 rounded-lg px-4 py-2 ${

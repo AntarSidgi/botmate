@@ -34,7 +34,7 @@
     "clsx": "^2.1.1",
     "drizzle-orm": "^0.30.10",
     "envalid": "^8.0.0",
-    "framer-motion": "^11.1.7",
+    "framer-motion": "^11.1.9",
     "grammy": "^1.22.4",
     "husky": "^9.0.11",
     "isolated-vm": "^4.7.2",

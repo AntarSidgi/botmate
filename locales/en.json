@@ -7,7 +7,9 @@
     "Coming soon": "Coming soon",
     "Start": "Start",
     "Stop": "Stop",
-    "Restart": "Restart"
+    "Restart": "Restart",
+    "Start debugging": "Start debugging",
+    "Stop debugging": "Stop debugging"
   },
   "Sidebar": {
     "Dashboard": "Dashboard",
