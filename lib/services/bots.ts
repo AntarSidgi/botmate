@@ -199,6 +199,7 @@ async function launchBots(ids?: string[]) {
   }
 
   globalThis.instances = instances;
+  return true;
 }
 
 async function stop(id: string) {
@@ -216,16 +217,20 @@ async function start(id: string) {
   if (!data) {
     throw new Error('Bot not found');
   }
-  const bot = globalThis.instances?.get(id);
-  if (bot) {
-    if (data.enableWebhook) {
-      await bot.api.setWebhook(
-        `${data.webhookUrl}?botId=${id}`,
-      );
-    } else bot.start();
-    await update(id, { status: 1 });
-  } else {
-    return launchBots([id]);
+  try {
+    const bot = globalThis.instances?.get(id);
+    if (bot) {
+      if (data.enableWebhook) {
+        await bot.api.setWebhook(
+          `${data.webhookUrl}?botId=${id}`,
+        );
+      } else bot.start();
+      return update(id, { status: 1 });
+    } else {
+      return launchBots([id]);
+    }
+  } catch (err) {
+    console.error(err);
   }
 }
 
