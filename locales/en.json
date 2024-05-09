@@ -4,11 +4,15 @@
     "No bots": "No bots",
     "All bots": "All bots",
     "Settings": "Settings",
-    "Coming soon": "Coming soon"
+    "Coming soon": "Coming soon",
+    "Start": "Start",
+    "Stop": "Stop",
+    "Restart": "Restart"
   },
   "Sidebar": {
     "Dashboard": "Dashboard",
     "Commands": "Commands",
+    "Handlers": "Handlers",
     "Debug": "Debug",
     "Marketplace": "Marketplace",
     "Settings": "Settings"

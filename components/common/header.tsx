@@ -6,7 +6,7 @@ function Header({
   actions?: React.ReactNode;
 }) {
   return (
-    <div className="sticky top-0 flex min-h-16 items-center gap-2 border-b bg-white px-2 py-2">
+    <div className="sticky top-0 flex h-16 items-center gap-2 border-b bg-white px-2">
       <h1 className="text-lg font-semibold">
         {title}
       </h1>

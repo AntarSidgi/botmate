@@ -1,5 +1,6 @@
 import { sql } from 'drizzle-orm';
 import {
+  blob,
   integer,
   sqliteTable,
   text,
@@ -23,6 +24,23 @@ const bots = sqliteTable('bots', {
   ),
 });
 
-export { bots };
+const handlers = sqliteTable('handlers', {
+  id: integer('id').primaryKey({
+    autoIncrement: true,
+  }),
+  name: text('name').notNull(),
+  enabled: integer('enabled', {
+    mode: 'boolean',
+  }).default(true),
+  botId: text('bot_id').notNull(),
+  files: blob('files', { mode: 'buffer' }),
+  createdAt: text('created_at').default(
+    sql`CURRENT_TIMESTAMP`,
+  ),
+});
+
+export { bots, handlers };
 
 export type Bot = typeof bots.$inferSelect;
+export type Handler =
+  typeof handlers.$inferSelect;

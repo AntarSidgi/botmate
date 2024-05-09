@@ -9,12 +9,14 @@ import {
 } from '#/lib/db/schema';
 
 import db from '../db';
+import { getOf } from './handlers';
 
-type CreateBotInput = {
-  token: string;
-};
-async function create(input: CreateBotInput) {
-  const bot = new Bot(input.token);
+declare module globalThis {
+  var instances: Map<string, Bot>;
+}
+
+async function create(token: string) {
+  const bot = new Bot(token);
   const me = await bot.api.getMe();
 
   let picture = Buffer.from('');
@@ -26,7 +28,7 @@ async function create(input: CreateBotInput) {
       photos.photos[0][0].file_id,
     );
     const response = await fetch(
-      `https://api.telegram.org/file/bot${input.token}/${file.file_path}`,
+      `https://api.telegram.org/file/bot${token}/${file.file_path}`,
     );
     const blog = await response.blob();
     picture = Buffer.from(
@@ -43,7 +45,7 @@ async function create(input: CreateBotInput) {
       )}`,
       status: 0,
       username: me.username,
-      token: input.token,
+      token: token,
     });
     return me;
   } catch (err) {
@@ -58,8 +60,14 @@ async function create(input: CreateBotInput) {
   }
 }
 
-function all() {
-  return db.query.bots.findMany();
+function all(ids: string[] = []) {
+  return db.query.bots.findMany({
+    where(fields, operators) {
+      if (ids.length > 0) {
+        return operators.inArray(fields.id, ids);
+      }
+    },
+  });
 }
 
 function get(id: string) {
@@ -153,14 +161,84 @@ async function disableWebhook(botId: string) {
   }
 }
 
-const bots = {
+async function launchBots(ids?: string[]) {
+  const bots = await all(ids);
+  const instances = new Map<string, Bot>();
+
+  for (const data of bots) {
+    if (globalThis.instances?.has(data.id)) {
+      continue;
+    }
+
+    const bot = new Bot(data.token);
+    await bot.init();
+
+    const handlers = await getOf(data.id);
+
+    for (const handler of handlers) {
+      const files = JSON.parse(
+        Buffer.from(
+          handler.files ?? '{}',
+        ).toString(),
+      );
+      const index = files['index.js'] ?? '';
+      const composer = eval(index);
+      bot.use(composer);
+    }
+
+    if (!data.enableWebhook) {
+      bot.start();
+    }
+
+    instances.set(data.id, bot);
+    await update(data.id, { status: 1 });
+  }
+
+  globalThis.instances = instances;
+}
+
+async function stop(id: string) {
+  const bot = globalThis.instances?.get(id);
+  if (bot) {
+    await bot.stop();
+    await update(id, { status: 0 });
+    globalThis.instances.delete(id);
+  }
+}
+
+async function start(id: string) {
+  const bot = globalThis.instances?.get(id);
+  if (bot) {
+    bot.start();
+    await update(id, { status: 1 });
+  } else {
+    return launchBots([id]);
+  }
+}
+
+async function restart(id: string) {
+  const oldInstance =
+    globalThis.instances?.get(id);
+  if (oldInstance) {
+    await oldInstance.stop();
+    globalThis.instances.delete(id);
+
+    await launchBots([id]);
+  } else {
+    await launchBots([id]);
+  }
+}
+
+export {
   all,
   get,
   create,
   update,
+  start,
+  stop,
+  restart,
+  launchBots,
   updateToken,
   enableWebhook,
   disableWebhook,
 };
-
-export default bots;
