@@ -125,6 +125,20 @@ async function enableWebhook(
     throw new Error('Bot not found');
   }
 
+  const hasInstance =
+    globalThis.instances?.has(botId);
+  if (hasInstance) {
+    const instance =
+      globalThis.instances.get(botId)!;
+    const res = await instance.api.setWebhook(
+      `${url}?botId=${botId}`,
+    );
+    return update(botId, {
+      enableWebhook: res,
+      webhookUrl: url,
+    });
+  }
+
   try {
     const i = new Bot(bot.token);
     await i.api.setWebhook(
@@ -147,6 +161,18 @@ async function disableWebhook(botId: string) {
 
   if (!bot) {
     throw new Error('Bot not found');
+  }
+
+  const hasInstance =
+    globalThis.instances?.has(botId);
+  if (hasInstance) {
+    const instance =
+      globalThis.instances.get(botId)!;
+    const res =
+      await instance.api.deleteWebhook();
+    return update(botId, {
+      enableWebhook: res,
+    });
   }
 
   try {
@@ -225,6 +251,7 @@ async function start(id: string) {
           `${data.webhookUrl}?botId=${id}`,
         );
       } else bot.start();
+      console.log('Bot started');
       return update(id, { status: 1 });
     } else {
       return launchBots([id]);
