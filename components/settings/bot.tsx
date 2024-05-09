@@ -174,6 +174,11 @@ function BotSettings() {
               setEnableWebhook((prev) => !prev);
               if (enableWebhook) {
                 disableWebhook.mutateAsync(botId);
+              } else {
+                setWebhook.mutateAsync({
+                  botId,
+                  url: webhookRef.current?.value!,
+                });
               }
             }}
           />
