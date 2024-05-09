@@ -8,7 +8,10 @@ import { toast } from 'sonner';
 
 import { useEffect, useState } from 'react';
 
-import { useParams } from 'next/navigation';
+import {
+  useParams,
+  useRouter,
+} from 'next/navigation';
 
 import Editor from '@monaco-editor/react';
 
@@ -24,7 +27,10 @@ function HandlerEditor({
   handlerId: number;
   defaultFiles?: Record<string, any>;
 }) {
+  const r = useRouter();
   const params = useParams();
+
+  const utils = trpc.useUtils();
   const saveHandler =
     trpc.saveHandler.useMutation();
   const deleteHandler =
@@ -50,7 +56,9 @@ function HandlerEditor({
       .mutateAsync(handlerId)
       .then(() => {
         toast.success('Handler deleted');
-        window.location.href = `/bots/${params.botId}/handlers`;
+        r.push(`/bots/${params.botId}/handlers`);
+
+        utils.handlers.invalidate();
       });
   }
 
@@ -59,7 +67,7 @@ function HandlerEditor({
   }, [files, selectedFile]);
 
   return (
-    <div className="relative h-full">
+    <div className="h-full overflow-hidden">
       <div className="flex h-12 items-center gap-1 border-b bg-background p-2">
         {/* {Object.keys(files).map((file) => (
           <Button
@@ -103,7 +111,7 @@ function HandlerEditor({
         </ConfirmModal>
       </div>
       <Editor
-        height="100vh"
+        height="100%"
         language={
           selectedFile.endsWith('.js')
             ? 'javascript'
@@ -112,9 +120,15 @@ function HandlerEditor({
         value={
           fileContent ||
           [
+            '// This is a demo code, please save to make it work',
+            '',
             `const { Composer } = require('grammy');`,
             ``,
             `const bot = new Composer();`,
+            '',
+            `bot.command('start', (ctx) => {`,
+            `  ctx.reply('Hello world!');`,
+            `});`,
             '',
             `module.exports = bot;`,
           ].join('\n')

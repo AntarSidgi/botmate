@@ -1,6 +1,9 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import {
+  AnimatePresence,
+  motion,
+} from 'framer-motion';
 import {
   CopyIcon,
   EllipsisVerticalIcon,
@@ -38,7 +41,6 @@ function HandlerList() {
       enabled: Boolean(currentBot),
     },
   );
-
   const createHandler =
     trpc.createHandler.useMutation();
 
@@ -57,72 +59,81 @@ function HandlerList() {
       )}
 
       <div className="flex-1 overflow-auto">
-        {handlers.data?.map((handler, index) => {
-          const isSelected =
-            handler.id ===
-            Number(params.handlerId);
-          return (
-            <motion.div
-              key={handler.id}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: index * 0.05 }}
-            >
-              <Link
-                href={`/bots/${params.botId}/handlers/${handler.id}`}
-                className="cursor-default select-none"
-                draggable={false}
-              >
-                <div
-                  className={`flex h-20 items-center justify-between gap-2 border-b p-4 ${
-                    isSelected
-                      ? 'bg-primary-foreground'
-                      : ''
-                  }`}
+        <AnimatePresence>
+          {handlers.data?.map(
+            (handler, index) => {
+              const isSelected =
+                handler.id ===
+                Number(params.handlerId);
+              return (
+                <motion.div
+                  key={handler.id}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{
+                    delay: index * 0.05,
+                  }}
+                  exit={{ opacity: 0, y: 10 }}
                 >
-                  <span>{handler.name}</span>
-                  {isSelected && (
-                    <div>
-                      <DropdownMenu>
-                        <DropdownMenuTrigger
-                          asChild
-                        >
-                          <Button
-                            size="xs"
-                            variant={'outline'}
-                            icon={
-                              <EllipsisVerticalIcon
-                                size={14}
+                  <Link
+                    href={`/bots/${params.botId}/handlers/${handler.id}`}
+                    className="cursor-default select-none"
+                    draggable={false}
+                  >
+                    <div
+                      className={`flex h-20 items-center justify-between gap-2 border-b p-4 ${
+                        isSelected
+                          ? 'bg-primary-foreground'
+                          : ''
+                      }`}
+                    >
+                      <span>{handler.name}</span>
+                      {isSelected && (
+                        <div>
+                          <DropdownMenu>
+                            <DropdownMenuTrigger
+                              asChild
+                            >
+                              <Button
+                                size="xs"
+                                variant={
+                                  'outline'
+                                }
+                                icon={
+                                  <EllipsisVerticalIcon
+                                    size={14}
+                                  />
+                                }
                               />
-                            }
-                          />
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="start">
-                          <DropdownMenuItem>
-                            <CopyIcon className="mr-2 h-4 w-4" />
-                            Duplicate
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <TextIcon className="mr-2 h-4 w-4" />
-                            Rename
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <TrashIcon className="mr-2 h-4 w-4" />
-                            Delete
-                          </DropdownMenuItem>
-                          <DropdownMenuItem>
-                            <Share2Icon className="mr-2 h-4 w-4" />
-                            Share
-                          </DropdownMenuItem>
-                        </DropdownMenuContent>
-                      </DropdownMenu>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="start">
+                              <DropdownMenuItem>
+                                <CopyIcon className="mr-2 h-4 w-4" />
+                                Duplicate
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <TextIcon className="mr-2 h-4 w-4" />
+                                Rename
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <TrashIcon className="mr-2 h-4 w-4" />
+                                Delete
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <Share2Icon className="mr-2 h-4 w-4" />
+                                Share
+                              </DropdownMenuItem>
+                            </DropdownMenuContent>
+                          </DropdownMenu>
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              </Link>
-            </motion.div>
-          );
-        })}
+                  </Link>
+                </motion.div>
+              );
+            },
+          )}
+        </AnimatePresence>
       </div>
 
       <div className="flex min-h-16 w-full items-center justify-center border-t px-4">

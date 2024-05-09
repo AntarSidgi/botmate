@@ -25,13 +25,13 @@ async function Page({
   );
 
   return (
-    <>
+    <div className="flex h-full flex-col">
       <Header title={handler.name} />
       <HandlerEditor
         handlerId={handler.id}
         defaultFiles={files}
       />
-    </>
+    </div>
   );
 }
 
