@@ -1,3 +1,3 @@
 export function register() {
-  // start active bots
+  fetch('http://localhost:3000/api/init');
 }

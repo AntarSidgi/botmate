@@ -1,5 +1,9 @@
 'use client';
 
+import {
+  AnimatePresence,
+  motion,
+} from 'framer-motion';
 import { Message } from 'grammy/types';
 
 import { useEffect, useState } from 'react';
@@ -9,8 +13,6 @@ import { useTranslations } from 'next-intl';
 
 import { Messages } from '#/globals';
 import { useDebug } from '#/lib/debug';
-
-import DebugActions from '../actions/debug';
 
 function parseMessageView(message: Message): {
   type: keyof Messages['Message'];
@@ -94,35 +96,57 @@ function DebugBot() {
               </p>
             )}
             <div className="h-full overflow-y-auto">
-              {messages.map((message, index) => {
-                const parsedMessage =
-                  parseMessageView(message);
-                const isSelected =
-                  selectedMessage?.message_id ===
-                  message.message_id;
-                return (
-                  <div
-                    key={index}
-                    className={`h-20 border-b p-4 ${
-                      isSelected
-                        ? 'bg-primary-foreground'
-                        : ''
-                    }`}
-                    onClick={() =>
-                      setSelectedMessage(message)
-                    }
-                  >
-                    <p className="text-sm text-muted-foreground">
-                      {t(
-                        `Message.${parsedMessage.type}` as any,
-                      )}
-                    </p>
-                    <p className="line-clamp-1">
-                      {parsedMessage.content}
-                    </p>
-                  </div>
-                );
-              })}
+              <AnimatePresence>
+                {messages.map(
+                  (message, index) => {
+                    const parsedMessage =
+                      parseMessageView(message);
+                    const isSelected =
+                      selectedMessage?.message_id ===
+                      message.message_id;
+                    return (
+                      <div
+                        key={message.message_id}
+                        className={`h-20 border-b p-4 ${
+                          isSelected
+                            ? 'bg-primary-foreground'
+                            : ''
+                        }`}
+                        onClick={() =>
+                          setSelectedMessage(
+                            message,
+                          )
+                        }
+                      >
+                        <motion.div
+                          initial={{
+                            opacity: 0,
+                            x: -10,
+                          }}
+                          animate={{
+                            opacity: 1,
+                            x: 0,
+                          }}
+                          transition={{
+                            duration: 0.5,
+                          }}
+                        >
+                          <p className="text-sm text-muted-foreground">
+                            {t(
+                              `Message.${parsedMessage.type}` as any,
+                            )}
+                          </p>
+                          <p className="line-clamp-1">
+                            {
+                              parsedMessage.content
+                            }
+                          </p>
+                        </motion.div>
+                      </div>
+                    );
+                  },
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </div>

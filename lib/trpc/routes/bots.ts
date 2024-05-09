@@ -15,8 +15,9 @@ export const addBot = procedure
   )
   .mutation(async ({ input }) => {
     try {
-      const bot =
-        await services.bots.create(input);
+      const bot = await services.bots.create(
+        input.token,
+      );
       return bot;
     } catch (err) {
       if (err instanceof GrammyError) {
@@ -88,6 +89,51 @@ export const disableWebhook = procedure
       return await services.bots.disableWebhook(
         input,
       );
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: err.message,
+        });
+      }
+    }
+  });
+
+export const startBot = procedure
+  .input(z.string())
+  .mutation(async ({ input }) => {
+    try {
+      return await services.bots.start(input);
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: err.message,
+        });
+      }
+    }
+  });
+
+export const stopBot = procedure
+  .input(z.string())
+  .mutation(async ({ input }) => {
+    try {
+      return await services.bots.stop(input);
+    } catch (err) {
+      if (err instanceof Error) {
+        throw new TRPCError({
+          code: 'BAD_REQUEST',
+          message: err.message,
+        });
+      }
+    }
+  });
+
+export const restartBot = procedure
+  .input(z.string())
+  .mutation(async ({ input }) => {
+    try {
+      return await services.bots.restart(input);
     } catch (err) {
       if (err instanceof Error) {
         throw new TRPCError({
