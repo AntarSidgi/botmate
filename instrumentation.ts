@@ -1,3 +1,5 @@
+import { isHttpUri, isHttpsUri } from 'valid-url';
+
 export function register() {
   const address =
     process.env.NODE_ENV === 'development'
@@ -5,5 +7,6 @@ export function register() {
       : process.env.APP_URL ||
         `https://${process.env.VERCEL_URL}`;
 
-  if (address) fetch(`${address}/api/init`);
+  if (isHttpsUri(address) || isHttpUri(address))
+    fetch(`${address}/api/init`);
 }
