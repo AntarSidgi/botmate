@@ -6,29 +6,29 @@ BotMate is a modern bot development platform for Telegram. It allows you to rapi
 
 ![Text-Banner](https://github.com/botmate/botmate/assets/31907722/02818878-9109-40e2-b536-7dc2c2295df6)
 
-## Features
+# Features
 
 BotMate comes with a variety of features to help you create and deploy bots for Telegram. The main focus of BotMate is to provide a simple and easy-to-use platform for bot development.
 
 Here are some of the features of BotMate:
 
-#### 🚀 Rapid Development
+## 🚀 Rapid Development
 
 BotMate provides a simple and easy-to-use UI to create and deploy bots for Telegram. You can create a bot in minutes and deploy it with a single click.
 
-#### 🧩 Plugin System
+## 🧩 Plugin System
 
 With a powerful plugin system that allows you to extend the functionality of your bot. You can create custom plugins or use pre-built plugins from the community.
 
-#### 📦 Handlers
+## 📦 Handlers
 
 Write custom handlers in JavaScript to handle incoming messages, commands, and more. You can create custom handlers for your bot to perform specific actions.
 
-#### 🖇️ Database Access
+## 🖇️ Database Access
 
 Easily access and manage your bot's data using the built-in database system. You can store and retrieve data from the database using simple API functions.
 
-#### 📡 Webhooks
+## 📡 Webhooks
 
 BotMate supports webhook mode, which allows you to receive updates from Telegram in real-time. You can set up webhooks for your bot with a single click.
 
@@ -36,11 +36,11 @@ _and much more!_
 
 ![Text-Banner](https://github.com/botmate/botmate/assets/31907722/593a3b1b-e9c1-4faa-8da9-fd573c1cd539)
 
-## Installation
+# Installation
 
 There are several ways to install BotMate. You can install BotMate using Docker, or you can install it manually on your server.
 
-#### Docker (Recommended)
+## Docker (Recommended)
 
 The easiest way to install BotMate is to use Docker. You can run BotMate in a Docker container with a single command.
 
@@ -52,7 +52,7 @@ docker run -d -p 3000:3000 -v ./data:/data monawwar/botmate
 
 🥳 That's it you do no need any extra setup. Access BotMate at `http://localhost:3000` in your browser.
 
-#### Manual Installation
+## Manual Installation
 
 1. Clone the repository
 
@@ -74,14 +74,14 @@ pnpm run build
 pnpm start
 ```
 
-### 📕 Documentation
+# 📕 Documentation
 
 For more information on how to use BotMate, please refer to the [documentation](https://botmate.github.io/docs).
 
-### 🤝 Contributing
+# 🤝 Contributing
 
 BotMate is an open-source project and we welcome contributions from the community. If you would like to contribute to BotMate, please read the [CONTRIBUTING.md](CONTRIBUTING.md) file for more information.
 
-### 📝 License
+# 📝 License
 
 BotMate is licensed under the [MIT License](LICENSE).
