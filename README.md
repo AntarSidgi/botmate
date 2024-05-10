@@ -47,7 +47,7 @@ The easiest way to install BotMate is to use Docker. You can run BotMate in a Do
 ```bash
 mkdir botmate
 cd botmate
-docker run -d -p 3000:3000 -v ./data:/data monawwar/botmate
+docker run -d -p 3000:3000 -v ./data:/data botmate/botmate
 ```
 
 🥳 That's it you do no need any extra setup. Access BotMate at `http://localhost:3000` in your browser.
