@@ -1,6 +1,6 @@
 import { isHttpUri, isHttpsUri } from 'valid-url';
 
-export async function register() {
+export function register() {
   const address =
     process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000'
@@ -9,6 +9,8 @@ export async function register() {
 
   try {
     if (isHttpsUri(address) || isHttpUri(address))
-      await fetch(`${address}/api/init`);
+      fetch(`${address}/api/init`).catch(
+        () => {},
+      );
   } catch {}
 }

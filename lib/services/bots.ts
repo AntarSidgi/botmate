@@ -60,9 +60,23 @@ async function create(token: string) {
   }
 }
 
-function all(ids: string[] = []) {
+function all(
+  ids: string[] = [],
+  where?: {
+    status?: number;
+  },
+) {
   if (ids.length === 0) {
-    return db.query.bots.findMany();
+    return db.query.bots.findMany({
+      where(fields, operators) {
+        if (where?.status) {
+          return operators.eq(
+            fields.status,
+            where.status,
+          );
+        }
+      },
+    });
   }
 
   return db.query.bots.findMany({
@@ -192,7 +206,7 @@ async function disableWebhook(botId: string) {
 }
 
 async function launchBots(ids?: string[]) {
-  const bots = await all(ids);
+  const bots = await all(ids, { status: 1 });
   const instances = new Map<string, Bot>();
 
   for (const data of bots) {
