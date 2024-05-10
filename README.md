@@ -6,6 +6,8 @@ BotMate is a modern bot development platform for Telegram. It allows you to rapi
 
 ![Text-Banner](https://github.com/botmate/botmate/assets/31907722/02818878-9109-40e2-b536-7dc2c2295df6)
 
+## Features
+
 BotMate comes with a variety of features to help you create and deploy bots for Telegram. The main focus of BotMate is to provide a simple and easy-to-use platform for bot development.
 
 Here are some of the features of BotMate:
@@ -33,6 +35,8 @@ BotMate supports webhook mode, which allows you to receive updates from Telegram
 _and much more!_
 
 ![Text-Banner](https://github.com/botmate/botmate/assets/31907722/593a3b1b-e9c1-4faa-8da9-fd573c1cd539)
+
+## Installation
 
 There are several ways to install BotMate. You can install BotMate using Docker, or you can install it manually on your server.
 
