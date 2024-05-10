@@ -22,7 +22,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: monawwar/botmate:${{ github.ref_name }}, monawwar/botmate:latest
+          tags: botmate/botmate:${{ github.ref_name }}, botmate/botmate:latest
           platforms: linux/amd64,linux/arm64
           build-args: |
             GIT_SHA=${{ github.sha }}
