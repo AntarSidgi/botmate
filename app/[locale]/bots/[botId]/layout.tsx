@@ -15,8 +15,8 @@ async function Layout({
   };
 }) {
   const bots = await services.bots.all();
-  const currentBot = bots.find(
-    (bot) => bot.id === params.botId,
+  const currentBot = await services.bots.get(
+    params.botId,
   );
   if (!currentBot) {
     redirect('/bots');

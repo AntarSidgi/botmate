@@ -241,7 +241,7 @@ function Sidebar() {
                   href={parsed}
                   className={`flex cursor-default items-center gap-2 rounded-lg px-4 py-2 ${
                     isActive
-                      ? 'bg-primary text-white'
+                      ? 'bg-primary text-primary-foreground'
                       : 'hover:bg-accent'
                   }`}
                   draggable="false"

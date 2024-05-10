@@ -61,11 +61,13 @@ async function create(token: string) {
 }
 
 function all(ids: string[] = []) {
+  if (ids.length === 0) {
+    return db.query.bots.findMany();
+  }
+
   return db.query.bots.findMany({
     where(fields, operators) {
-      if (ids.length > 0) {
-        return operators.inArray(fields.id, ids);
-      }
+      return operators.inArray(fields.id, ids);
     },
   });
 }
