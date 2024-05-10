@@ -161,7 +161,6 @@ function HandlerList() {
             size="sm"
             className="w-full"
             icon={<PlusIcon size={18} />}
-            disabled={handlers.isLoading}
             isLoading={createHandler.isLoading}
           >
             Create Handler

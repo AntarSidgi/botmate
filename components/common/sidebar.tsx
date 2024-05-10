@@ -30,7 +30,11 @@ import { useStore } from '#/lib/store';
 import { trpc } from '#/lib/trpc/client';
 
 import { Button } from '../ui/button';
-import { Card } from '../ui/card';
+import {
+  Card,
+  CardDescription,
+  CardTitle,
+} from '../ui/card';
 import {
   Select,
   SelectContent,
@@ -108,17 +112,19 @@ function Sidebar() {
 
   return (
     <div
-      className={`relative flex h-full w-60 flex-col border-r`}
+      className={`flex h-full w-60 flex-col border-r`}
     >
-      <div className="flex h-36 flex-col justify-center gap-4 border-b bg-background px-2">
-        <Image
-          alt="logo"
-          src={'/logo.png'}
-          width={50}
-          height={50}
-          className="rounded-xl shadow-md"
-          draggable={false}
-        />
+      <div className="flex min-h-36 flex-col justify-center gap-4 border-b bg-background px-2">
+        <Link href="/">
+          <Image
+            alt="logo"
+            src={'/logo.png'}
+            width={50}
+            height={50}
+            className="rounded-xl shadow-md"
+            draggable={false}
+          />
+        </Link>
         <Select
           onValueChange={(href) => {
             r.push(href);
@@ -167,7 +173,7 @@ function Sidebar() {
         </Select>
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 overflow-auto">
         <div className="flex h-20 items-center justify-center gap-2 border-b px-2">
           <Button
             className="w-full"
@@ -256,6 +262,29 @@ function Sidebar() {
       </div>
 
       <div className="flex-1" />
+
+      <div className="p-2">
+        <Card className="p-4">
+          <CardTitle className="text-md">
+            {t('Feedback.Title')}
+          </CardTitle>
+          <CardDescription>
+            {t('Feedback.Description')}
+          </CardDescription>
+          <Link
+            href="tg://resolve?domain=chatbotmate"
+            target="_blank"
+          >
+            <Button
+              size="sm"
+              className="mt-2 w-full"
+              variant="outline"
+            >
+              {t('Feedback.Send feedback')}
+            </Button>
+          </Link>
+        </Card>
+      </div>
     </div>
   );
 }

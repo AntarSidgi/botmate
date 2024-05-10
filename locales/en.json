@@ -77,5 +77,10 @@
       "Description": "Change language of the website",
       "Select": "Select language"
     }
+  },
+  "Feedback": {
+    "Title": "Feedback",
+    "Description": "Have a question or suggestion? Let us know!",
+    "Send feedback": "Send feedback"
   }
 }
