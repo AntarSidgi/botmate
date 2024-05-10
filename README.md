@@ -1,7 +1,5 @@
 # botmate
 
-Modern bot development platform for Telegram. Rapidly create and deploy bots for Telegram using BotMate. Use plugins to extend the functionality of your bot, and much more.
-
 ![banner](https://github.com/botmate/botmate/assets/31907722/6c9310fc-d79a-4005-bdff-8c2ec1813453)
 
 BotMate is a modern bot development platform for Telegram. It allows you to rapidly create and deploy bots for Telegram using a simple and easy-to-use UI. With BotMate, you can create custom plugins to extend the functionality of your bot, write custom handlers in JavaScript to handle incoming messages, commands, and more, and access and manage your bot's data using the built-in database system.
