@@ -24,6 +24,7 @@ function getSha() {
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  output: 'standalone',
   env: {
     version: packageJSON.version,
     gitSHA: process.env.GIT_SHA || getSha(),

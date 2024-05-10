@@ -212,8 +212,14 @@ async function launchBots(ids?: string[]) {
         ).toString(),
       );
       const index = files['index.js'] ?? '';
-      const composer = eval(index);
-      bot.use(composer);
+      try {
+        const composer = eval(index);
+        if (typeof composer === 'object')
+          bot.use(composer);
+      } catch (e) {
+        // todo: save in database [logs]
+        console.error(e);
+      }
     }
 
     if (data.enableWebhook) {
@@ -237,6 +243,8 @@ async function stop(id: string) {
     await bot.api.deleteWebhook();
     await update(id, { status: 0 });
     globalThis.instances.delete(id);
+  } else {
+    await update(id, { status: 0 });
   }
 }
 

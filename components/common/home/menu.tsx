@@ -42,7 +42,7 @@ function HomeMenu() {
 
   return (
     <>
-      <div className="flex items-center gap-2 border-b-2">
+      <div className="flex items-center gap-2 border-b">
         {items.map((item) => {
           const active = pathname === item.path;
           return (

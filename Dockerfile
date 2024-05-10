@@ -1,35 +1,57 @@
-FROM --platform=$BUILDPLATFORM node:18 AS base
+FROM node:18-alpine AS base
+
+# Install dependencies only when needed
+FROM base AS deps
+RUN apk add --no-cache libc6-compat
+RUN apk add --no-cache --virtual .build-deps gcc g++ make python3
 WORKDIR /app
 
-COPY package.json package.json
-COPY pnpm-lock.yaml pnpm-lock.yaml
-RUN npm i -g pnpm
+# Install dependencies based on the preferred package manager
+COPY package.json ./
+COPY pnpm-lock.yaml ./
+RUN corepack enable pnpm
+RUN pnpm i --frozen-lockfile
 
-FROM base AS prod-deps
-RUN pnpm install --production --frozen-lockfile
 
-FROM base AS dev-deps
-RUN pnpm install --frozen-lockfile
-
-FROM dev-deps AS build
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-ENV DATABASE_URL=file:./data/db.sqlite
-RUN mkdir -p data
-RUN pnpm drizzle-kit push:sqlite
+
+RUN mkdir data
+RUN corepack enable pnpm
 RUN pnpm run build
+RUN pnpm db:push
 
-FROM --platform=$BUILDPLATFORM node:18-alpine AS runtime
-COPY --from=build /app/.next .next
-COPY --from=build /app/public public
-COPY --from=build /app/package.json package.json
-COPY --from=prod-deps /app/node_modules node_modules
-COPY --from=build /app/data data
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
 
-ARG GIT_SHA
-ENV NODE_ENV=production
-ENV DATABASE_URL=file:./data/db.sqlite
-ENV GIT_SHA=$GIT_SHA
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+COPY --from=builder /app/public ./public
+
+# Set the correct permission for prerender cache
+RUN mkdir .next
+RUN chown nextjs:nodejs .next
+
+RUN npm i grammy --no-save
+
+# Automatically leverage output traces to reduce image size
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/data ./data
+
+USER nextjs
+
 EXPOSE 3000
 
-CMD ["npm", "start"]
+ENV PORT 3000
 
+# server.js is created by next build from the standalone output
+CMD HOSTNAME="0.0.0.0" node server.js

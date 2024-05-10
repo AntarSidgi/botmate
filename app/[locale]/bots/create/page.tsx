@@ -1,4 +1,4 @@
-import CreateBotCard from '#/components/bots/add';
+import CreateBotCard from '#/components/bots/create';
 
 function Page() {
   return (

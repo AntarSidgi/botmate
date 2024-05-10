@@ -1,0 +1,86 @@
+{
+  "Common": {
+    "Submit": "إرسال",
+    "No bots": "لا يوجد بوتات",
+    "All bots": "جميع البوتات",
+    "Settings": "الإعدادات",
+    "Coming soon": "قريبًا",
+    "Start": "بدء",
+    "Stop": "إيقاف",
+    "Restart": "إعادة التشغيل",
+    "Start debugging": "بدء التصحيح",
+    "Stop debugging": "إيقاف التصحيح"
+  },
+  "Sidebar": {
+    "Dashboard": "لوحة التحكم",
+    "Commands": "الأوامر",
+    "Handlers": "المعالجون",
+    "Debug": "تصحيح",
+    "Marketplace": "السوق",
+    "Settings": "الإعدادات"
+  },
+  "Select a bot": {
+    "Title": "اختر بوتًا",
+    "Description": "يرجى تحديد بوت للإدارة"
+  },
+  "Create Bot": {
+    "Title": "إنشاء بوت",
+    "Description": "يرجى إدخال رمز لإنشاء بوت جديد",
+    "Placeholder": "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
+    "Error": {
+      "Empty": "يرجى إدخال رمز البوت",
+      "Invalid": "رمز البوت غير صالح",
+      "Exists": "البوت موجود بالفعل"
+    }
+  },
+  "Debug": {
+    "Title": "تصحيح",
+    "Live messages": "الرسائل المباشرة",
+    "No message selected": "لم يتم تحديد رسالة",
+    "No messages": "لا توجد رسائل"
+  },
+  "Message": {
+    "unknown": "غير معروف",
+    "text": "نص",
+    "photo": "صورة",
+    "audio": "صوت",
+    "document": "مستند",
+    "sticker": "ملصق",
+    "video": "فيديو",
+    "voice": "صوت",
+    "caption": "تعليق"
+  },
+  "Settings": {
+    "General": {
+      "Title": "عام",
+      "Description": "المظهر، اللغة، إلخ"
+    },
+    "Bot": {
+      "Title": "بوت",
+      "Description": "الويب هوك، الرمز والنسخ الاحتياطي"
+    },
+    "Command": {
+      "Title": "أمر",
+      "Description": "المشرفون، الافتراضي، العالمي، إلخ"
+    },
+    "About": {
+      "Title": "حول",
+      "Description": "حول التطبيق"
+    },
+
+    "Appearance": {
+      "Title": "المظهر",
+      "Description": "تخصيص مظهر التطبيق"
+    },
+    "Language": {
+      "Title": "اللغة",
+      "Description": "تغيير لغة الموقع",
+      "Select": "اختر اللغة"
+    }
+  },
+  "Feedback": {
+    "Title": "ملاحظات",
+    "Description": "هل لديك سؤال أو اقتراح؟ أخبرنا!",
+    "Send feedback": "إرسال ملاحظات"
+  }
+}

@@ -1,5 +1,7 @@
 'use client';
 
+import ISO6391 from 'iso-639-1';
+
 import {
   useLocale,
   useTranslations,
@@ -7,7 +9,6 @@ import {
 import { usePathname } from 'next/navigation';
 
 import { locales } from '#/config';
-import { localName } from '#/i18n';
 import { useRouter } from '#/navigation';
 
 import {
@@ -73,9 +74,9 @@ function GeneralSettings() {
               >
                 <SelectTrigger className="w-[180px]">
                   <SelectValue
-                    placeholder={
-                      localName[locale]
-                    }
+                    placeholder={ISO6391.getName(
+                      locale,
+                    )}
                   />
                 </SelectTrigger>
                 <SelectContent>
@@ -88,7 +89,7 @@ function GeneralSettings() {
                         key={l}
                         value={l}
                       >
-                        {localName[l]}
+                        {ISO6391.getName(l)}
                       </SelectItem>
                     ))}
                   </SelectGroup>

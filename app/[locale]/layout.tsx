@@ -30,7 +30,11 @@ export default function RootLayout({
 }>) {
   const messages = useMessages();
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html
+      lang={locale}
+      suppressHydrationWarning
+      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+    >
       <Script
         defer
         data-domain="botmate.dev"

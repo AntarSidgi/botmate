@@ -5,5 +5,5 @@ export function register() {
       : process.env.APP_URL ||
         `https://${process.env.VERCEL_URL}`;
 
-  fetch(`${address}/api/init`);
+  if (address) fetch(`${address}/api/init`);
 }

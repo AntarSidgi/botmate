@@ -4,11 +4,17 @@
     "No bots": "Tidak ada bot",
     "All bots": "Semua bot",
     "Settings": "Pengaturan",
-    "Coming soon": "Segera hadir"
+    "Coming soon": "Segera hadir",
+    "Start": "Mulai",
+    "Stop": "Berhenti",
+    "Restart": "Restart",
+    "Start debugging": "Mulai debugging",
+    "Stop debugging": "Berhenti debugging"
   },
   "Sidebar": {
     "Dashboard": "Dasbor",
     "Commands": "Perintah",
+    "Handlers": "Penangan",
     "Debug": "Debug",
     "Marketplace": "Pasar",
     "Settings": "Pengaturan"
@@ -30,7 +36,8 @@
   "Debug": {
     "Title": "Debug",
     "Live messages": "Pesan langsung",
-    "No message selected": "Tidak ada pesan yang dipilih"
+    "No message selected": "Tidak ada pesan yang dipilih",
+    "No messages": "Tidak ada pesan"
   },
   "Message": {
     "unknown": "Tidak diketahui",
@@ -56,14 +63,24 @@
       "Title": "Perintah",
       "Description": "Admin, default, global, dll"
     },
+    "About": {
+      "Title": "Tentang",
+      "Description": "Tentang aplikasi"
+    },
+
     "Appearance": {
       "Title": "Tampilan",
       "Description": "Sesuaikan tampilan aplikasi"
     },
     "Language": {
       "Title": "Bahasa",
-      "Description": "Ubah bahasa situs web",
+      "Description": "Ubah bahasa website",
       "Select": "Pilih bahasa"
     }
+  },
+  "Feedback": {
+    "Title": "Umpan Balik",
+    "Description": "Ada pertanyaan atau saran? Beri tahu kami!",
+    "Send feedback": "Kirim umpan balik"
   }
 }

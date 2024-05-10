@@ -26,6 +26,8 @@ import {
   useRouter,
 } from 'next/navigation';
 
+import { TRPCClientError } from '@trpc/client';
+
 import { useStore } from '#/lib/store';
 import { trpc } from '#/lib/trpc/client';
 
@@ -52,18 +54,10 @@ function Sidebar() {
   const pathname = usePathname();
   const { bots, currentBot } = useStore();
 
+  const startBot = trpc.startBot.useMutation();
+  const stopBot = trpc.stopBot.useMutation();
   const restartBot =
     trpc.restartBot.useMutation();
-  const startBot = trpc.startBot.useMutation({
-    onSettled() {
-      toast.success('Bot started');
-    },
-  });
-  const stopBot = trpc.stopBot.useMutation({
-    onSettled() {
-      toast.success('Bot stopped');
-    },
-  });
 
   const [status, setStatus] = useState(0);
 
@@ -112,7 +106,7 @@ function Sidebar() {
 
   return (
     <div
-      className={`flex h-full w-60 flex-col border-r`}
+      className={`flex h-full w-60 flex-col overflow-auto border-r`}
     >
       <div className="flex min-h-36 flex-col justify-center gap-4 border-b bg-background px-2">
         <Link href="/">
@@ -173,7 +167,7 @@ function Sidebar() {
         </Select>
       </div>
 
-      <div className="space-y-4 overflow-auto">
+      <div className="space-y-4">
         <div className="flex h-20 items-center justify-center gap-2 border-b px-2">
           <Button
             className="w-full"
@@ -183,16 +177,26 @@ function Sidebar() {
                 : 'default'
             }
             onClick={async () => {
-              if (status === 1) {
-                await stopBot.mutateAsync(
-                  params.botId as string,
-                );
-                setStatus(0);
-              } else {
-                await startBot.mutateAsync(
-                  params.botId as string,
-                );
-                setStatus(1);
+              try {
+                if (status === 1) {
+                  await stopBot.mutateAsync(
+                    params.botId as string,
+                  );
+                  setStatus(0);
+                  toast.success('Bot stopped');
+                } else {
+                  await startBot.mutateAsync(
+                    params.botId as string,
+                  );
+                  setStatus(1);
+                  toast.success('Bot started');
+                }
+              } catch (e) {
+                if (
+                  e instanceof TRPCClientError
+                ) {
+                  toast.error(e.message);
+                }
               }
             }}
             isLoading={

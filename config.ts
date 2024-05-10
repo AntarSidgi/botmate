@@ -6,7 +6,11 @@ export const host = process.env.VERCEL_URL
   : `http://localhost:${port}`;
 
 export const defaultLocale = 'en' as const;
-export const locales = ['en', 'id'] as const;
+export const locales = [
+  'en',
+  'id',
+  'ar',
+] as const;
 
 export const pathnames: Record<string, string> =
   {};

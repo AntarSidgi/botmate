@@ -5,7 +5,7 @@ import Image from 'next/image';
 import HomeMenu from './menu';
 
 type Props = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
 };
 function HomeLayout({ children }: Props) {
   return (
@@ -17,13 +17,10 @@ function HomeLayout({ children }: Props) {
             src="/logo.png"
             width={100}
             height={100}
-            className="h-12 w-12 rounded-xl shadow-lg"
+            className="h-12 w-12 rounded-xl shadow-md"
           />
           <h1 className="text-center text-4xl font-bold">
-            <span className="text-primary">
-              bot
-            </span>
-            mate
+            botmate
           </h1>
         </div>
 

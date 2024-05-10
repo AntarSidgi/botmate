@@ -19,7 +19,7 @@ async function Layout({
     params.botId,
   );
   if (!currentBot) {
-    redirect('/bots');
+    redirect('/');
   }
   return (
     <SetBots bots={bots} currentBot={currentBot}>

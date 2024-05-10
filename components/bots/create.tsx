@@ -40,7 +40,7 @@ function CreateBotCard() {
         token,
       })
       .then((res) => {
-        if (res) r.push('/');
+        if (res) r.push(`/bots/${res.id}`);
       })
       .catch((err) => {
         if (err instanceof TRPCClientError) {
