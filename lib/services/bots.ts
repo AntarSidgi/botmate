@@ -1,5 +1,6 @@
 import { eq } from 'drizzle-orm';
 import { Bot, GrammyError } from 'grammy';
+import * as grammy from 'grammy';
 
 import { LibsqlError } from '@libsql/client';
 
@@ -208,6 +209,9 @@ async function disableWebhook(botId: string) {
 async function launchBots(ids?: string[]) {
   const bots = await all(ids, { status: 1 });
   const instances = new Map<string, Bot>();
+
+  // for code evaluation
+  const Composer = grammy.Composer;
 
   for (const data of bots) {
     if (globalThis.instances?.has(data.id)) {
