@@ -1,6 +1,6 @@
 {
   "Common": {
-    "Submit": "إرسال",
+    "Submit": "تأكيد",
     "No bots": "لا يوجد بوتات",
     "All bots": "جميع البوتات",
     "Settings": "الإعدادات",
@@ -8,15 +8,15 @@
     "Start": "بدء",
     "Stop": "إيقاف",
     "Restart": "إعادة التشغيل",
-    "Start debugging": "بدء التصحيح",
-    "Stop debugging": "إيقاف التصحيح"
+    "Start debugging": "بدء الفحص",
+    "Stop debugging": "إيقاف الفحص"
   },
   "Sidebar": {
-    "Dashboard": "لوحة التحكم",
+    "Dashboard": "لوحة الإدارة",
     "Commands": "الأوامر",
-    "Handlers": "المعالجون",
-    "Debug": "تصحيح",
-    "Marketplace": "السوق",
+    "Handlers": "إنشاء كود مخصص",
+    "Debug": "كشف الأخطاء",
+    "Marketplace": "المتجر",
     "Settings": "الإعدادات"
   },
   "Select a bot": {
@@ -25,16 +25,16 @@
   },
   "Create Bot": {
     "Title": "إنشاء بوت",
-    "Description": "يرجى إدخال رمز لإنشاء بوت جديد",
+    "Description": "يرجى إدخال التوكن لإنشاء بوت جديد",
     "Placeholder": "123456:ABC-DEF1234ghIkl-zyx57W2v1u123ew11",
     "Error": {
-      "Empty": "يرجى إدخال رمز البوت",
-      "Invalid": "رمز البوت غير صالح",
+      "Empty": "يرجى إدخال توكن البوت",
+      "Invalid": "التوكن غير صالح",
       "Exists": "البوت موجود بالفعل"
     }
   },
   "Debug": {
-    "Title": "تصحيح",
+    "Title": "كشف الأخطاء",
     "Live messages": "الرسائل المباشرة",
     "No message selected": "لم يتم تحديد رسالة",
     "No messages": "لا توجد رسائل"
@@ -44,10 +44,10 @@
     "text": "نص",
     "photo": "صورة",
     "audio": "صوت",
-    "document": "مستند",
+    "document": "ملفات",
     "sticker": "ملصق",
     "video": "فيديو",
-    "voice": "صوت",
+    "voice": "تسجيل",
     "caption": "تعليق"
   },
   "Settings": {
@@ -57,11 +57,11 @@
     },
     "Bot": {
       "Title": "بوت",
-      "Description": "الويب هوك، الرمز والنسخ الاحتياطي"
+      "Description": "الويب هوك، التوكن والنسخ الاحتياطي"
     },
     "Command": {
-      "Title": "أمر",
-      "Description": "المشرفون، الافتراضي، العالمي، إلخ"
+      "Title": "الأوامر",
+      "Description": "أوامر المشرفين، الأوامر العامة،إلخ"
     },
     "About": {
       "Title": "حول",
@@ -79,8 +79,8 @@
     }
   },
   "Feedback": {
-    "Title": "ملاحظات",
-    "Description": "هل لديك سؤال أو اقتراح؟ أخبرنا!",
-    "Send feedback": "إرسال ملاحظات"
+    "Title": "مقترحات",
+    "Description": "هل لديك سؤال أو اقتراح؟ أخبرنا به!",
+    "Send feedback": "إرسال مقترحاتك"
   }
 }
