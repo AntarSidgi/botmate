@@ -14,7 +14,7 @@ function GlobalProvider({
 }) {
   return (
     <NextThemesProvider
-      defaultTheme="dark"
+      defaultTheme="light"
       attribute="class"
     >
       <TrpcProvider>
