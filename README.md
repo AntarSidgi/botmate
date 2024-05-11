@@ -103,3 +103,8 @@ BotMate is an open-source project and we welcome contributions from the communit
 # 📝 License
 
 BotMate is licensed under the [MIT License](LICENSE).
+
+# 📧 Contact
+
+If you have any questions or feedback, please feel free to contact us at
+[Telegram Group](https://t.me/chatbotmate).
