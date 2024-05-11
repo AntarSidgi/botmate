@@ -117,13 +117,11 @@ function HandlerEditor({
             ? 'javascript'
             : 'json'
         }
-        value={
+        defaultValue={
           fileContent ||
           [
             '// This is a demo code, please save to make it work',
             '',
-            `const { Composer } = require('grammy');`,
-            ``,
             `const bot = new Composer();`,
             '',
             `bot.command('start', (ctx) => {`,
