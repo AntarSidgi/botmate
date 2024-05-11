@@ -43,12 +43,16 @@ function HandlerEditor({
     useState('');
 
   function handleSave() {
-    saveHandler.mutate({
-      id: handlerId,
-      files: {
-        'index.js': fileContent,
-      },
-    });
+    saveHandler
+      .mutateAsync({
+        id: handlerId,
+        files: {
+          'index.js': fileContent,
+        },
+      })
+      .then(() => {
+        toast.success('Saved!');
+      });
   }
 
   function handleDelete() {
