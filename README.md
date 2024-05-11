@@ -65,6 +65,8 @@ git clone https://github.com/botmate/botmate
 ```bash
 cd botmate
 pnpm install
+mkdir data
+pnpm db:push
 pnpm run build
 ```
 
