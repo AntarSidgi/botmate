@@ -23,7 +23,7 @@ async function Layout({
   }
   return (
     <SetBots bots={bots} currentBot={currentBot}>
-      <div className="flex h-screen overflow-hidden">
+      <div className="flex h-screen overflow-hidden border-t">
         <Sidebar />
         <div className="flex flex-1 flex-col overflow-auto bg-muted">
           {children}
