@@ -8,6 +8,11 @@ import {
 
 console.log(`📦 Building Next.js Project...`);
 
+mkdirSync('data', { recursive: true });
+spawnSync('npm', ['run', 'db:push'], {
+  stdio: 'inherit',
+});
+
 spawnSync('npm', ['run', 'build'], {
   stdio: 'inherit',
 });
@@ -31,13 +36,7 @@ cpSync(
 console.log(`📦 Genrating database...`);
 
 mkdirSync('temp/data', { recursive: true });
-spawnSync(
-  'DATABASE_URL=file:./temp/data/db.sqlite pnpm db:push',
-  {
-    shell: true,
-    stdio: 'inherit',
-  },
-);
+cpSync('data/db.sqlite', 'temp/data/db.sqlite');
 
 console.log(`\n📦 Generating package.json`);
 
@@ -93,4 +92,5 @@ writeFileSync(
 
 spawnSync('npm', ['publish'], {
   cwd: 'temp',
+  stdio: 'inherit',
 });
