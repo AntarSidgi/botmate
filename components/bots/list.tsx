@@ -10,6 +10,16 @@ import { Bot } from '#/lib/db/schema';
 import BotCard from './card';
 
 function BotList({ bots }: { bots: Bot[] }) {
+  if (bots.length > 0) {
+    return (
+      <div className="py-4 text-center">
+        <p className="text-gray-500">
+          No bots found
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="space-y-4">
       <AnimatePresence>
