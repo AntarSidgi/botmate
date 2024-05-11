@@ -52,6 +52,22 @@ docker run -d -p 3000:3000 -v ./data:/data botmate/botmate
 
 🥳 That's it you do no need any extra setup. Access BotMate at `http://localhost:3000` in your browser.
 
+## CLI (Recommended)
+
+You can also install BotMate using the CLI. The CLI provides a simple and easy way to install and manage BotMate on your server.
+
+1. Install the CLI
+
+```bash
+npm install -g botmate-cli
+```
+
+2. Start BotMate
+
+```bash
+botmate start
+```
+
 ## Manual Installation
 
 1. Clone the repository
